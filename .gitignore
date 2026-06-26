@@ -1,0 +1,46 @@
+HELP.md
+null
+backend/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**backend/src/main/**/target/
+!**backend/src/test/**/target/
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+backend/logs
+
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+backend/AGENTS.md
+backend/logs/app.log
+backend/src/main/resources/application.properties
+backend/README.md
+backend/test_diag.txt
+backend/test_output.txt
+backend/test_output2.txt
+backend/logs/
+/backend/src/test/
+
+/backend/项目面试问题-dishmind映射.md

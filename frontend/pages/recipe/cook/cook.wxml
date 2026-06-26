@@ -1,0 +1,49 @@
+<view class="container" bindtouchstart="touchStart" bindtouchend="touchEnd">
+  <!-- 进度指示 -->
+  <view class="progress">
+    <text>{{currentIndex + 1}} / {{steps.length}}</text>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{(currentIndex + 1) / steps.length * 100}}"></view>
+    </view>
+  </view>
+
+  <!-- 当前步骤 -->
+  <view class="step-content">
+    <view class="step-image" wx:if="{{currentStep.imageUrl}}" style="background-image: url({{currentStep.imageUrl}})"></view>
+    <view class="step-placeholder" wx:else style="background: {{placeholderColor}}">
+      <text>步骤 {{currentStep.displayOrder}}</text>
+    </view>
+    
+    <view class="step-text">
+      <text class="step-num">第 {{currentStep.displayOrder}} 步</text>
+      <text class="step-desc">{{currentStep.description}}</text>
+      <view class="step-tip" wx:if="{{currentStep.tip}}">
+        <text>💡 {{currentStep.tip}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 计时器 -->
+  <view class="timer-section" wx:if="{{currentStep.durationSeconds > 0}}">
+    <view class="timer-display">{{timerDisplay}}</view>
+    <button class="timer-btn" bindtap="toggleTimer">
+      {{timerRunning ? '暂停' : (timerSeconds === 0 ? '开始计时' : '继续')}}
+    </button>
+    <button class="timer-btn reset" bindtap="resetTimer" wx:if="{{timerSeconds > 0}}">重置</button>
+  </view>
+
+  <!-- 导航按钮 -->
+  <view class="nav-buttons">
+    <button class="nav-btn {{currentIndex === 0 ? 'disabled' : ''}}" bindtap="prevStep">上一步</button>
+    <button class="nav-btn primary {{currentIndex === steps.length - 1 ? 'disabled' : ''}}" bindtap="nextStep">下一步</button>
+  </view>
+
+  <!-- 完成提示 -->
+  <view class="complete-mask" wx:if="{{currentIndex === steps.length - 1 && showComplete}}">
+    <view class="complete-content">
+      <text class="complete-icon">🎉</text>
+      <text class="complete-text">烹饪完成！</text>
+      <button class="btn-primary" bindtap="goBack">返回详情</button>
+    </view>
+  </view>
+</view>

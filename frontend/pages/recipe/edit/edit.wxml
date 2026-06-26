@@ -1,0 +1,106 @@
+<view class="container">
+  <!-- 基本信息 -->
+  <view class="section">
+    <view class="section-title">基本信息</view>
+    <input class="input" placeholder="菜谱标题" value="{{title}}" bindinput="inputTitle" />
+    <textarea class="textarea" placeholder="简介（选填）" value="{{description}}" bindinput="inputDesc" />
+    
+    <!-- 难度：1-5 滑块 + 刻度 -->
+    <view class="form-item difficulty-box">
+      <text>难度</text>
+      <slider min="1" max="5" value="{{difficulty}}" step="1" show-value bindchange="changeDifficulty" />
+      <view class="difficulty-scale">
+        <text 
+          wx:for="{{[1,2,3,4,5]}}" 
+          wx:key="*this" 
+          class="scale-num {{difficulty == item ? 'active' : ''}}"
+        >{{item}}</text>
+      </view>
+    </view>
+    
+    <view class="form-item">
+      <text>烹饪时间（分钟）</text>
+      <input type="number" value="{{cookTime}}" bindinput="inputCookTime" />
+    </view>
+  </view>
+
+  <!-- 标签选择（已修复） -->
+  <view class="section">
+    <view class="section-title">标签（多选）</view>
+    <view class="tag-select">
+      <view 
+        class="cat-group" 
+        wx:for="{{categories}}" 
+        wx:key="id" 
+        wx:for-index="catIndex" 
+        wx:for-item="catItem"
+      >
+        <text class="cat-name">{{catItem.name}}</text>
+        <view class="tags">
+          <text 
+            class="tag {{tag.selected ? 'selected' : ''}}" 
+            wx:for="{{catItem.tags}}" 
+            wx:key="id"
+            wx:for-item="tag"
+            bindtap="toggleTag"
+            data-cat-index="{{catIndex}}"
+            data-tag-id="{{tag.id}}"
+          >{{tag.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 步骤编辑 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">步骤（{{steps.length}}步）</text>
+      <text class="add-btn" bindtap="addStep">+ 添加步骤</text>
+    </view>
+    
+    <view class="step-edit-list">
+      <view class="step-edit-item" wx:for="{{steps}}" wx:key="index" wx:for-index="index">
+        <view class="step-header">
+          <text>步骤 {{index + 1}}</text>
+          <text class="delete" bindtap="deleteStep" data-index="{{index}}">删除</text>
+        </view>
+        
+        <textarea 
+          placeholder="步骤描述（必填）" 
+          value="{{item.description}}" 
+          data-index="{{index}}"
+          bindinput="inputStepDesc"
+        />
+        
+        <input 
+          placeholder="小贴士（选填）" 
+          value="{{item.tip}}" 
+          data-index="{{index}}"
+          bindinput="inputStepTip"
+        />
+        
+        <input 
+          type="number" 
+          placeholder="耗时（秒，选填）" 
+          value="{{item.durationSeconds}}" 
+          data-index="{{index}}"
+          bindinput="inputStepTime"
+        />
+        
+        <input 
+          placeholder="图片URL（选填）" 
+          value="{{item.imageUrl}}" 
+          data-index="{{index}}"
+          bindinput="inputStepImage"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-bar">
+    <button class="btn-primary" bindtap="submitRecipe" loading="{{submitting}}">
+      {{isEdit ? '保存修改' : '发布菜谱'}}
+    </button>
+  </view>
+</view>

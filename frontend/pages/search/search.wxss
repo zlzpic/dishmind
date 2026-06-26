@@ -1,0 +1,178 @@
+/* 页面容器 - 移除 padding，确保占满 */
+.container {
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+}
+
+/* 搜索头部 - 紧贴顶部，左右贴边 */
+.search-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;  /* 紧凑的上下间距 */
+  background: #fff;
+  border-bottom: 2rpx solid #f0f0f0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;  /* 确保无外边距 */
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 40rpx;
+  padding: 16rpx 30rpx;
+  margin-right: 20rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+}
+
+.search-box .icon {
+  color: #999;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+}
+
+.search-box input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+  height: 100%;
+}
+
+.search-box .clear {
+  color: #999;
+  font-size: 24rpx;
+  padding: 10rpx;
+}
+
+.cancel {
+  font-size: 30rpx;
+  color: #666;
+  padding: 10rpx;
+  white-space: nowrap;
+}
+
+/* 建议区域 - 左右贴边 */
+.suggest-area {
+  padding: 20rpx 0;  /* 移除左右 padding，交给 section 控制 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section {
+  margin-bottom: 30rpx;
+  background: #fff;
+  padding: 30rpx;  /* 统一内边距 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.clear {
+  font-size: 28rpx;
+  color: #999;
+  padding: 10rpx;
+}
+
+/* 标签云 */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.tag-cloud .tag {
+  background: #f5f5f5;
+  padding: 16rpx 28rpx;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.tag-cloud .tag:active {
+  transform: scale(0.95);
+  background: #eee;
+}
+
+.tag-cloud .tag.hot {
+  background: #fff5f5;
+  color: #ff6b6b;
+  font-weight: 500;
+}
+
+.hot-icon {
+  margin-right: 6rpx;
+}
+
+/* 结果区域 - 左右贴边 */
+.result-area {
+  padding: 20rpx;  /* 控制卡片边距 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.result-count {
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  background: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+}
+
+.highlight {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* 加载组件 */
+.loading-more, .no-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 24rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 100rpx 40rpx;
+  color: #999;
+  font-size: 30rpx;
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.tip {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  display: block;
+  color: #bbb;
+}

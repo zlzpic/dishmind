@@ -1,0 +1,66 @@
+<view class="container">
+  <!-- 已选标签 -->
+  <view class="selected-bar" wx:if="{{selectedTags.length > 0}}">
+    <scroll-view class="selected-tags" scroll-x>
+      <tag-pill 
+        wx:for="{{selectedTags}}" 
+        wx:key="id"
+        name="{{item.name}}"
+        color="#ff6b6b"
+        border="true"
+        bind:tap="removeTag"
+        data-id="{{item.id}}"
+      />
+    </scroll-view>
+    <text class="clear-btn" bindtap="clearTags">清空</text>
+  </view>
+
+  <!-- 分类选择（关键修复：添加 wx:for-index="catIndex"） -->
+  <view class="category-list" wx:if="{{!showResults}}">
+    <view class="category-section" wx:for="{{categories}}" wx:key="id" wx:for-item="cat" wx:for-index="catIndex">
+      <view class="cat-title">{{cat.name}}</view>
+      <view class="tag-grid">
+        <view 
+          class="tag {{tag.selected ? 'active' : ''}}" 
+          wx:for="{{cat.tags}}" 
+          wx:key="id"
+          wx:for-item="tag"
+          bindtap="toggleTag"
+          data-tag="{{tag}}"
+          data-cat-index="{{catIndex}}"
+        >
+          {{tag.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar" wx:if="{{selectedTags.length > 0 && !showResults}}">
+    <button class="filter-btn" bindtap="applyFilter">
+      查看结果（{{recipeCount}}）
+    </button>
+  </view>
+
+  <!-- 结果列表 -->
+  <view class="result-area" wx:if="{{showResults}}">
+    <view class="result-header">
+      <text class="result-title">筛选结果（{{recipeCount}}）</text>
+      <text class="change-filter" bindtap="backToFilter">重新筛选</text>
+    </view>
+    
+    <recipe-card 
+      wx:for="{{recipes}}" 
+      wx:key="id"
+      recipe="{{item}}"
+      bind:tap="goDetail"
+    />
+    
+    <loading-more 
+      loading="{{loading}}" 
+      no-more="{{!hasMore && recipes.length > 0}}"
+      empty="{{recipes.length === 0 && !loading}}"
+      empty-text="没有找到符合条件的菜谱"
+    />
+  </view>
+</view>

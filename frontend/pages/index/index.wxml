@@ -1,0 +1,40 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="goSearch">
+    <text class="icon">🔍</text>
+    <input placeholder="搜索菜谱、食材" disabled placeholder-class="placeholder"/>
+  </view>
+
+  <!-- 快捷入口 -->
+  <!-- <view class="quick-tags">
+    <view class="tag-item" wx:for="{{quickTags}}" wx:key="id" bindtap="goFilter" data-id="{{item.id}}">
+      <view class="tag-icon" style="background: {{item.color}}">{{item.icon}}</view>
+      <text class="tag-name">{{item.name}}</text>
+    </view>
+  </view> -->
+
+  <!-- 标签页 -->
+  <view class="tabs">
+    <view class="tab {{activeTab === 'hot' ? 'active' : ''}}" bindtap="switchTab" data-tab="hot">热门推荐</view>
+    <view class="tab {{activeTab === 'latest' ? 'active' : ''}}" bindtap="switchTab" data-tab="latest">最新上架</view>
+    <view class="tab {{activeTab === 'recommend' ? 'active' : ''}}" bindtap="switchTab" data-tab="recommend">猜你喜欢</view>
+  </view>
+
+  <!-- 列表区 -->
+  <view class="list-wrapper">
+    <recipe-card 
+      wx:for="{{recipes}}" 
+      wx:key="id"
+      recipe="{{item}}"
+      bind:tap="goDetail"
+    />
+    
+    <loading-more 
+      loading="{{loading}}" 
+      no-more="{{!hasMore && recipes.length > 0}}"
+      empty="{{recipes.length === 0 && !loading}}"
+      empty-text="暂无相关菜谱"
+      empty-icon="🍽️"
+    />
+  </view>
+</view>

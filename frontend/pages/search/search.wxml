@@ -1,0 +1,76 @@
+<view class="container">
+  <!-- 搜索头部 -->
+  <view class="search-header">
+    <view class="search-box">
+      <text class="icon">🔍</text>
+      <input 
+        placeholder="搜索菜谱、食材" 
+        value="{{keyword}}"
+        bindinput="inputKeyword"
+        bindconfirm="doSearch"
+        focus
+      />
+      <text class="clear" wx:if="{{keyword}}" bindtap="clearKeyword">✕</text>
+    </view>
+    <text class="cancel" bindtap="goBack">取消</text>
+  </view>
+
+  <!-- 历史与热门 -->
+  <view class="suggest-area" wx:if="{{!searching}}">
+    <view class="section" wx:if="{{history.length > 0}}">
+      <view class="section-header">
+        <text class="title">搜索历史</text>
+        <text class="clear" bindtap="clearHistory">🗑️</text>
+      </view>
+      <view class="tag-cloud">
+        <view 
+          class="tag" 
+          wx:for="{{history}}" 
+          wx:key="index"
+          bindtap="searchByHistory"
+          data-keyword="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="title">热门搜索</text>
+      </view>
+      <view class="tag-cloud hot">
+        <view 
+          class="tag {{index < 3 ? 'hot' : ''}}" 
+          wx:for="{{hotKeywords}}" 
+          wx:key="index"
+          bindtap="searchByHistory"
+          data-keyword="{{item}}"
+        >
+          <text wx:if="{{index < 3}}" class="hot-icon">🔥</text>
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="result-area" wx:if="{{searching}}">
+    <view class="result-count" wx:if="{{total > 0}}">
+      找到 <text class="highlight">{{total}}</text> 个相关菜谱
+    </view>
+
+    <recipe-card 
+      wx:for="{{recipes}}" 
+      wx:key="id"
+      recipe="{{item}}"
+      bind:tap="goDetail"
+    />
+    
+    <loading-more 
+      loading="{{loading}}" 
+      no-more="{{!hasMore}}"
+      empty="{{recipes.length === 0 && !loading}}"
+      empty-text="没有找到相关菜谱"
+      empty-icon="🔍"
+    />
+  </view>
+</view>

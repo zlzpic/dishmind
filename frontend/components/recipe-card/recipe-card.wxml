@@ -1,0 +1,17 @@
+<view class="recipe-card" bindtap="onTap">
+  <view class="image-wrap" style="background: {{placeholderColor}}">
+    <text class="placeholder-text">{{recipe.title ? recipe.title[0] : '菜'}}</text>
+  </view>
+  <view class="info">
+    <text class="title">{{recipe.title}}</text>
+    <view class="meta">
+      <tag-pill wx:if="{{showTag && recipe.tags && recipe.tags.length > 0}}" 
+                name="{{recipe.tags[0].name}}" 
+                color="#ff6b6b"/>
+      <text class="difficulty">{{difficultyText}}</text>
+      <text class="time">{{recipe.cookTime}}分钟</text>
+      <text class="rating" wx:if="{{recipe.rating}}">{{recipe.rating}}分</text>
+    </view>
+    <text class="author" wx:if="{{showAuthor}}">👤 {{recipe.authorNickname}}</text>
+  </view>
+</view>

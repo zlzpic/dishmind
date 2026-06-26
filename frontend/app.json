@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/search/search",
+    "pages/recipe/detail/detail",
+    "pages/recipe/cook/cook",
+    "pages/recipe/edit/edit",
+    "pages/user/profile/profile",
+    "pages/user/favorites/favorites",
+    "pages/user/my-recipes/my-recipes",
+    "pages/login/login"
+  ],
+  "usingComponents": {
+    "recipe-card": "/components/recipe-card/recipe-card",
+    "step-item": "/components/step-item/step-item",
+    "tag-pill": "/components/tag-pill/tag-pill",
+    "loading-more": "/components/loading-more/loading-more"
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "DishMind",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ff6b6b",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "发现",
+        "iconPath": "images/category.png",
+        "selectedIconPath": "images/category-active.png"
+      },
+      {
+        "pagePath": "pages/user/profile/profile",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-active.png"
+      }
+    ]
+  }
+}

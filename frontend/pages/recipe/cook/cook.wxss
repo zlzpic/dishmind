@@ -1,0 +1,212 @@
+.container {
+  height: 100vh;
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 进度条 - 固定高度，不压缩 */
+.progress {
+  padding: 20rpx 40rpx;
+  background: rgba(0,0,0,0.3);
+  flex-shrink: 0;  /* 关键：防止被压缩 */
+  height: 100rpx;  /* 固定高度 */
+  box-sizing: border-box;
+}
+
+.progress text {
+  font-size: 32rpx;
+  color: #fff;
+  display: block;
+  margin-bottom: 10rpx;
+  text-align: center;
+  line-height: 1.4;
+  height: 44rpx;  /* 明确高度 */
+}
+
+.progress-bar {
+  height: 8rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #ff6b6b;
+}
+
+/* 步骤内容区域 - 关键修复 */
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 40rpx;
+  overflow-y: auto;  /* 内容过多时可滚动 */
+  min-height: 0;     /* 关键：flex子项必须设置 */
+  position: relative;
+}
+
+/* 图片区域 - 固定高度，不压缩 */
+.step-image {
+  width: 100%;
+  height: 300rpx;    /* 减小高度，给文字留空间 */
+  background-size: cover;
+  background-position: center;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  flex-shrink: 0;    /* 关键：防止被压缩 */
+}
+
+.step-placeholder {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80rpx;
+  font-weight: bold;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 20rpx;
+  flex-shrink: 0;
+}
+
+/* 文字区域 - 关键修复：确保有足够高度 */
+.step-text {
+  flex: 1;           /* 占据剩余空间 */
+  display: flex;     /* 使用flex布局垂直居中 */
+  flex-direction: column;
+  justify-content: center;  /* 垂直居中 */
+  min-height: 200rpx;       /* 关键：最小高度，防止被压缩 */
+  padding: 20rpx 0;
+  overflow: visible;        /* 确保文字不被裁剪 */
+}
+
+.step-num {
+  font-size: 36rpx;
+  color: #ff6b6b;
+  text-align: center;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+  height: 54rpx;     /* 明确高度 */
+  flex-shrink: 0;    /* 不压缩 */
+}
+
+/* 步骤描述 - 关键修复 */
+.step-desc {
+  font-size: 40rpx;
+  line-height: 1.6;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20rpx;
+  min-height: 64rpx;        /* 关键：最小高度 */
+  display: block;           /* 块级显示 */
+  overflow: visible;        /* 不裁剪 */
+  word-wrap: break-word;
+  word-break: break-all;
+  flex-shrink: 0;           /* 不压缩 */
+}
+
+/* 提示区域 */
+.step-tip {
+  background: rgba(255,255,255,0.1);
+  padding: 20rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #ffe58f;
+  line-height: 1.6;
+  text-align: center;
+  min-height: 44rpx;        /* 最小高度 */
+  flex-shrink: 0;           /* 不压缩 */
+}
+
+/* 计时器区域 - 固定高度 */
+.timer-section {
+  background: rgba(0,0,0,0.3);
+  padding: 20rpx 40rpx;
+  text-align: center;
+  flex-shrink: 0;           /* 不压缩 */
+  height: 180rpx;           /* 固定高度 */
+  box-sizing: border-box;
+}
+
+.timer-display {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #ff6b6b;
+  font-family: monospace;
+  margin-bottom: 10rpx;
+  line-height: 1.2;
+  height: 72rpx;
+}
+
+.timer-btn {
+  background: #ff6b6b;
+  color: #fff;
+  border-radius: 40rpx;
+  padding: 16rpx 40rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  margin: 0 10rpx;
+  line-height: 1.5;
+  border: none;
+}
+
+/* 导航按钮 - 固定高度 */
+.nav-buttons {
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: rgba(0,0,0,0.3);
+  flex-shrink: 0;           /* 不压缩 */
+  height: 140rpx;           /* 固定高度 */
+  box-sizing: border-box;
+}
+
+.nav-btn {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  border: none;
+  margin: 0;
+}
+
+.nav-btn.primary {
+  background: #ff6b6b;
+}
+
+/* 完成弹窗 */
+.complete-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.complete-content {
+  text-align: center;
+  padding: 40rpx;
+}
+
+.complete-text {
+  font-size: 48rpx;
+  color: #fff;
+  margin-bottom: 40rpx;
+  line-height: 1.5;
+  display: block;
+}

@@ -1,0 +1,179 @@
+.container {
+  background: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 140rpx;
+}
+
+/* 统计卡片 - 改为2行3列或5列紧凑布局 */
+.stats-card {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  margin: 20rpx;
+  border-radius: 20rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: #fff;
+  box-shadow: 0 8rpx 24rpx rgba(255,107,107,0.3);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10rpx;
+  min-width: 120rpx;
+  flex: 1;
+}
+
+.stat-item .num {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.stat-item .label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+/* 筛选标签 - 改为滚动适应5个标签 */
+.filter-tabs {
+  display: flex;
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.04);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.filter-tabs .tab {
+  display: inline-block;
+  padding: 20rpx 28rpx;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+  margin: 0 8rpx;
+  flex-shrink: 0;
+}
+
+.filter-tabs .tab.active {
+  background: #fff5f5;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* 列表区域 */
+.recipe-list {
+  padding: 0 20rpx;
+}
+
+.recipe-item {
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+/* 状态标签 */
+.status-badge {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  z-index: 10;
+  font-weight: 500;
+}
+
+/* 状态颜色：0草稿(灰色) 1审核中(橙色) 2已发布(绿色) 3下架(红色) */
+.status-0 { background: #f0f0f0; color: #999; }
+.status-1 { background: #fff7e6; color: #ff9500; }
+.status-2 { background: #f6ffed; color: #52c41a; }
+.status-3 { background: #fff1f0; color: #ff4d4f; }
+
+/* 操作按钮 */
+.item-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16rpx;
+  padding: 0 20rpx 20rpx;
+  background: #fff;
+  margin-top: -20rpx;
+  border-bottom-left-radius: 16rpx;
+  border-bottom-right-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+
+.action-btn {
+  font-size: 26rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 24rpx;
+  background: #f5f5f5;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.action-btn:active {
+  opacity: 0.7;
+}
+
+.action-btn.edit {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+
+.action-btn.delete {
+  background: #fff1f0;
+  color: #ff4d4f;
+}
+
+.action-btn.view {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.action-btn.republish {
+  background: #fff7e6;
+  color: #ff9500;
+}
+
+/* 悬浮按钮 */
+.float-btn {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff6b6b;
+  color: #fff;
+  padding: 24rpx 48rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 8rpx 24rpx rgba(255,107,107,0.4);
+  z-index: 100;
+}
+
+.float-btn text:first-child {
+  font-size: 40rpx;
+}
+/* 在原有样式基础上增加 */
+
+.action-btn.offline {
+  background: #fff1f0;
+  color: #ff4d4f;
+}
+
+.action-btn.submit {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.action-btn.withdraw {
+  background: #fff7e6;
+  color: #ff9500;
+}

@@ -1,0 +1,91 @@
+<view class="container">
+  <!-- 统计卡片 -->
+  <view class="stats-card">
+    <view class="stat-item" bindtap="switchFilter" data-filter="all">
+      <text class="num">{{totalCount}}</text>
+      <text class="label">全部</text>
+    </view>
+    <view class="stat-item" bindtap="switchFilter" data-filter="published">
+      <text class="num">{{publishedCount}}</text>
+      <text class="label">已发布</text>
+    </view>
+    <view class="stat-item" bindtap="switchFilter" data-filter="draft">
+      <text class="num">{{draftCount}}</text>
+      <text class="label">草稿</text>
+    </view>
+    <view class="stat-item" bindtap="switchFilter" data-filter="audit">
+      <text class="num">{{auditCount}}</text>
+      <text class="label">审核中</text>
+    </view>
+    <view class="stat-item" bindtap="switchFilter" data-filter="offShelf">
+      <text class="num">{{offShelfCount}}</text>
+      <text class="label">已下架</text>
+    </view>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view class="tab {{activeFilter === 'all' ? 'active' : ''}}" bindtap="switchFilter" data-filter="all">全部</view>
+    <view class="tab {{activeFilter === 'published' ? 'active' : ''}}" bindtap="switchFilter" data-filter="published">已发布</view>
+    <view class="tab {{activeFilter === 'draft' ? 'active' : ''}}" bindtap="switchFilter" data-filter="draft">草稿箱</view>
+    <view class="tab {{activeFilter === 'audit' ? 'active' : ''}}" bindtap="switchFilter" data-filter="audit">审核中</view>
+    <view class="tab {{activeFilter === 'offShelf' ? 'active' : ''}}" bindtap="switchFilter" data-filter="offShelf">已下架</view>
+  </view>
+
+  <!-- 菜谱列表 -->
+  <view class="recipe-list">
+    <view class="recipe-item" wx:for="{{recipes}}" wx:key="id">
+      <view class="status-badge status-{{item.status}}">{{item.statusText}}</view>
+      
+      <recipe-card 
+        recipe="{{item}}" 
+        showTag="{{false}}"
+        bind:tap="goDetail"
+        data-id="{{item.id}}"
+      />
+      
+      <!-- 状态-specific操作按钮 -->
+      <view class="item-actions">
+        <!-- 编辑：草稿/审核中/下架都可以编辑 -->
+        <text class="action-btn edit" bindtap="goEdit" data-id="{{item.id}}">编辑</text>
+        
+        <!-- 已发布：显示下架 -->
+        <block wx:if="{{item.status === 2}}">
+          <text class="action-btn offline" bindtap="offlineRecipe" data-id="{{item.id}}" data-title="{{item.title}}">下架</text>
+        </block>
+        
+        <!-- 已下架：显示重新上架 -->
+        <block wx:elif="{{item.status === 3}}">
+          <text class="action-btn republish" bindtap="republishRecipe" data-id="{{item.id}}" data-title="{{item.title}}">重新上架</text>
+        </block>
+        
+        <!-- 草稿：显示提交审核 -->
+        <block wx:elif="{{item.status === 0}}">
+          <text class="action-btn submit" bindtap="submitAudit" data-id="{{item.id}}" data-title="{{item.title}}">提交审核</text>
+        </block>
+        
+        <!-- 审核中：显示撤回（可选） -->
+        <block wx:elif="{{item.status === 1}}">
+          <text class="action-btn withdraw" bindtap="withdrawRecipe" data-id="{{item.id}}" data-title="{{item.title}}">撤回</text>
+        </block>
+        
+        <!-- 删除：草稿/下架可以删除 -->
+        <!-- <text class="action-btn delete" wx:if="{{item.status === 0 || item.status === 3}}" 
+              bindtap="deleteRecipe" data-id="{{item.id}}" data-title="{{item.title}}">删除</text> -->
+      </view>
+    </view>
+    
+    <loading-more 
+      loading="{{loading}}" 
+      no-more="{{!hasMore && recipes.length > 0}}"
+      empty="{{recipes.length === 0 && !loading}}"
+      empty-text="{{getEmptyText()}}"
+      empty-icon="📝"
+    />
+  </view>
+
+  <view class="float-btn" bindtap="createRecipe">
+    <text>+</text>
+    <text>发布新菜谱</text>
+  </view>
+</view>

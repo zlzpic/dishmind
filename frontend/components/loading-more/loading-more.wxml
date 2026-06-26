@@ -1,0 +1,15 @@
+<view class="loading-container">
+  <view wx:if="{{loading}}" class="loading">
+    <view class="spinner"></view>
+    <text>{{loadingText}}</text>
+  </view>
+  <view wx:elif="{{noMore && showNoMore}}" class="no-more">
+    <view class="line"></view>
+    <text>{{noMoreText}}</text>
+    <view class="line"></view>
+  </view>
+  <view wx:elif="{{empty && showEmpty}}" class="empty">
+    <text class="icon">{{emptyIcon}}</text>
+    <text class="text">{{emptyText}}</text>
+  </view>
+</view>

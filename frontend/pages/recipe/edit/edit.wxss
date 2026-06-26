@@ -1,0 +1,259 @@
+.container {
+  background: #f5f5f5;
+  min-height: 100vh;
+  padding: 20rpx;
+  padding-bottom: 140rpx;
+}
+
+.section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.add-btn {
+  color: #ff6b6b;
+  font-size: 30rpx;
+}
+
+/* ================== 修复输入框样式 ================== */
+
+/* 基础输入框 - 关键修复：明确高度和行高 */
+.input {
+  background: #f5f5f5;
+  padding: 20rpx 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 88rpx;        /* 关键：最小高度 */
+  line-height: 1.5;         /* 关键：行高与字体大小匹配 */
+  margin-bottom: 20rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.input:focus {
+  background: #fff;
+  border-color: #ff6b6b;
+}
+
+/* 多行文本框 - 关键修复：明确高度 */
+.textarea {
+  background: #f5f5f5;
+  padding: 20rpx 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  color: #333;
+  width: 100%;
+  height: 160rpx;           /* 关键：明确高度 */
+  line-height: 1.6;         /* 关键：行高 */
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  border: 2rpx solid transparent;
+}
+
+.textarea:focus {
+  background: #fff;
+  border-color: #ff6b6b;
+}
+
+/* 表单项横向布局 */
+.form-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  min-height: 88rpx;        /* 关键：确保最小高度 */
+}
+
+.form-item text {
+  font-size: 30rpx;
+  color: #333;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.form-item input {
+  flex: 1;
+  text-align: right;
+  background: #f5f5f5;
+  padding: 20rpx 24rpx;     /* 关键：统一 padding */
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  min-height: 88rpx;        /* 关键：最小高度 */
+  line-height: 1.5;         /* 关键：行高 */
+  box-sizing: border-box;
+}
+
+/* 标签选择 */
+.tag-select {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.cat-group {
+  border-bottom: 2rpx solid #f5f5f5;
+  padding-bottom: 20rpx;
+}
+
+.cat-name {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.tags .tag {
+  background: #f5f5f5;
+  color: #666;
+  padding: 16rpx 32rpx;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  line-height: 1.2;         /* 关键：行高 */
+  display: inline-flex;     /* 关键：确保垂直居中 */
+  align-items: center;      /* 关键：垂直居中 */
+}
+
+.tags .tag.selected {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+/* 步骤编辑 */
+.step-edit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.step-edit-item {
+  background: #f9f9f9;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  border: 2rpx solid #eee;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  min-height: 60rpx;        /* 关键：确保头部高度 */
+}
+
+.step-header text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.step-header .delete {
+  color: #ff6b6b;
+  font-size: 28rpx;
+  font-weight: normal;
+  padding: 10rpx 20rpx;     /* 关键：增大点击区域 */
+  line-height: 1;
+}
+
+/* 步骤内的输入框 - 关键修复 */
+.step-edit-item textarea {
+  background: #fff;
+  padding: 20rpx 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  width: 100%;
+  height: 140rpx;           /* 关键：明确高度 */
+  line-height: 1.6;         /* 关键：行高 */
+  margin-bottom: 15rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #eee;
+}
+
+.step-edit-item input {
+  background: #fff;
+  padding: 20rpx 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  width: 100%;
+  min-height: 88rpx;        /* 关键：最小高度 */
+  line-height: 1.5;         /* 关键：行高 */
+  margin-bottom: 15rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #eee;
+}
+
+/* 提交按钮 */
+.submit-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 20rpx rgba(0,0,0,0.05);
+  z-index: 100;
+}
+
+.btn-primary {
+  background: #ff6b6b;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  height: 90rpx;
+  line-height: 90rpx;       /* 关键：行高等于高度，确保垂直居中 */
+  border: none;
+  width: 100%;
+}
+
+.btn-primary[disabled] {
+  background: #ccc;
+}
+
+.difficulty-box {
+  margin-bottom: 20rpx;
+}
+
+.difficulty-scale {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 18rpx;
+  margin-top: 8rpx;
+}
+
+.scale-num {
+  font-size: 24rpx;
+  color: #ccc;
+  transition: all 0.2s;
+}
+
+.scale-num.active {
+  color: #ff6b6b;
+  font-weight: bold;
+  transform: scale(1.2);
+}

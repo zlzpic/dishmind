@@ -1,0 +1,9 @@
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  line-height: 1.2;
+}

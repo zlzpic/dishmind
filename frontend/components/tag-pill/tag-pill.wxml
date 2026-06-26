@@ -1,0 +1,4 @@
+<view class="tag-pill" style="background: {{bgColor}}; color: {{textColor}}; border: {{border ? '2rpx solid ' + textColor : 'none'}}">
+  <text wx:if="{{icon}}">{{icon}}</text>
+  <text>{{name}}</text>
+</view>

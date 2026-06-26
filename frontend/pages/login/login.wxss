@@ -1,0 +1,187 @@
+/* 页面容器 - 确保占满屏幕 */
+.container {
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo区域 - 顶部紧贴，左右居中 */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80rpx 0 60rpx;  /* 上下间距，左右自动居中 */
+  width: 100%;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+  line-height: 1;
+}
+
+.app-name {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+  line-height: 1.4;
+}
+
+.slogan {
+  font-size: 28rpx;
+  color: #999;
+  line-height: 1.4;
+}
+
+/* 表单区域 - 左右贴边，宽度占满 */
+.form-section {
+  background: #fff;
+  width: 100%;
+  padding: 40rpx 30rpx;  /* 上下40，左右30 */
+  box-sizing: border-box;
+  margin: 0;  /* 无外边距 */
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #eee;
+  padding: 24rpx 0;
+  margin-bottom: 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group .icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+  width: 40rpx;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.input-group input {
+  flex: 1;
+  font-size: 32rpx;
+  color: #333;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+/* 登录按钮 - 占满宽度 */
+.login-btn {
+  margin-top: 40rpx;
+  background: #ff6b6b;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border: none;
+  width: 100%;  /* 占满容器 */
+  box-sizing: border-box;
+  box-shadow: 0 8rpx 20rpx rgba(255,107,107,0.3);
+  opacity: 0.6;  /* 默认禁用态 */
+  transition: all 0.3s;
+}
+
+.login-btn.active {
+  opacity: 1;
+  box-shadow: 0 8rpx 24rpx rgba(255,107,107,0.4);
+}
+
+/* 其他操作（注册/忘记密码） */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  color: #666;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 分隔线 - 占满宽度 */
+.divider {
+  text-align: center;
+  margin: 40rpx 0;
+  position: relative;
+  width: 100%;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 200rpx;
+  height: 2rpx;
+  background: #ddd;
+}
+
+.divider::before { 
+  left: 40rpx; 
+}
+
+.divider::after { 
+  right: 40rpx; 
+}
+
+.divider text {
+  color: #999;
+  font-size: 28rpx;
+  background: #f5f5f5;  /* 遮挡线条 */
+  padding: 0 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+/* 游客入口 */
+.guest-entry {
+  text-align: center;
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+  width: 100%;
+}
+
+.guest-entry text {
+  color: #ff6b6b;
+  font-size: 28rpx;
+  text-decoration: underline;
+  padding: 20rpx;  /* 增大点击区域 */
+}
+/* pages/login/login.wxss 补充 */
+
+.switch-tip {
+  text-align: center;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.switch-btn {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-left: 10rpx;
+  text-decoration: underline;
+}
+
+/* 调整表单区域高度，适应注册时的额外字段 */
+.form-section {
+  background: #fff;
+  width: 100%;
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 600rpx;  /* 确保有足够空间 */
+}

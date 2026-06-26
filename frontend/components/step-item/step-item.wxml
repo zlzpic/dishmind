@@ -1,0 +1,38 @@
+<view class="step-item">
+  <view class="step-header">
+    <view class="step-num">{{displayOrder}}</view>
+    <text wx:if="{{step.durationSeconds > 0}}" class="step-time" bindtap="onTimerTap">
+      ⏱ {{durationText}}
+    </text>
+  </view>
+  
+  <view class="step-content">
+    <!-- 有图片显示图片 -->
+    <!-- 有图且没出错时显示图片 -->
+<image 
+  wx:if="{{step.imageUrl && !imageError}}" 
+  src="{{step.imageUrl}}" 
+  mode="widthFix" 
+  bindtap="previewImage"
+  binderror="onImageError"
+  lazy-load
+  class="step-image"
+/>
+
+<!-- 无图或加载失败时显示占位 -->
+<view 
+  wx:if="{{!step.imageUrl || imageError}}" 
+  class="step-placeholder" 
+  style="background: {{placeholderColor}}"
+>
+  <text class="placeholder-text">步骤 {{displayOrder}}</text>
+</view>
+    
+    <text class="step-desc">{{step.description}}</text>
+    
+    <view wx:if="{{step.tip}}" class="step-tip">
+      <text class="tip-icon">💡</text>
+      <text>{{step.tip}}</text>
+    </view>
+  </view>
+</view>

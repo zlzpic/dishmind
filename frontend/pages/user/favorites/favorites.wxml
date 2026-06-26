@@ -1,0 +1,74 @@
+<view class="container">
+  <!-- 文件夹标签 -->
+  <scroll-view class="folder-tabs" scroll-x>
+    <view 
+      class="folder-tab {{currentFolder === item ? 'active' : ''}}" 
+      wx:for="{{folders}}" 
+      wx:key="*this"
+      bindtap="switchFolder"
+      data-folder="{{item}}"
+    >
+      {{item}}
+    </view>
+    <!-- <view class="folder-tab add" bindtap="showCreateFolder">+</view> -->
+  </scroll-view>
+
+  <!-- 收藏列表 -->
+  <view class="recipe-list">
+  <view class="recipe-card" wx:for="{{recipes}}" wx:key="id">
+    <!-- 收藏卡片组件 -->
+    <recipe-card 
+      recipe="{{item}}" 
+      showTag="{{false}}"
+      bind:tap="goDetail"
+      data-id="{{item.id}}"
+    />
+    
+    <!-- 操作按钮 -->
+    <view class="item-actions">
+      <text bindtap="moveFolder" data-id="{{item.id}}" data-title="{{item.title}}">移动</text>
+      <text bindtap="removeFavorite" data-id="{{item.id}}">删除</text>
+    </view>
+  </view>
+</view>
+
+  <view class="empty" wx:if="{{recipes.length === 0 && !loading}}">
+    该文件夹暂无收藏
+  </view>
+
+  <!-- 新建文件夹弹窗 -->
+  <view class="modal" wx:if="{{showCreateModal}}">
+    <view class="modal-content">
+      <view class="modal-title">新建收藏夹</view>
+      <input placeholder="文件夹名称" value="{{newFolderName}}" bindinput="inputFolderName" />
+      <view class="modal-btns">
+        <button bindtap="hideCreateModal">取消</button>
+        <button class="primary" bindtap="createFolder">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 移动到文件夹弹窗（新增） -->
+  <view class="modal" wx:if="{{showMoveModal}}">
+    <view class="modal-content">
+      <view class="modal-title">移动到</view>
+      <view class="folder-list">
+        <view 
+          class="folder-option {{targetFolder === item ? 'active' : ''}}" 
+          wx:for="{{folders}}" 
+          wx:key="*this"
+          bindtap="selectTargetFolder"
+          data-folder="{{item}}"
+        >
+          <text class="folder-icon">📁</text>
+          <text class="folder-name">{{item}}</text>
+          <text class="check" wx:if="{{targetFolder === item}}">✓</text>
+        </view>
+      </view>
+      <view class="modal-btns">
+        <button bindtap="hideMoveModal">取消</button>
+        <button class="primary" bindtap="confirmMove" disabled="{{!targetFolder}}">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

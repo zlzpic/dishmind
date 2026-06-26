@@ -1,0 +1,165 @@
+<view class="container">
+  <!-- 封面区域 -->
+  <view class="cover-section" style="background: {{placeholderColor}}">
+    <view class="cover-content">
+      <text class="title">{{recipe.title}}</text>
+      <view class="meta-bar">
+        <view class="meta-item">
+          <text class="label">难度</text>
+          <text class="value">{{difficultyText}}</text>
+        </view>
+        <view class="meta-item">
+          <text class="label">时间</text>
+          <text class="value">{{recipe.cookTime}}分钟</text>
+        </view>
+        <view class="meta-item">
+          <text class="label">评分</text>
+          <text class="value">{{recipe.rating}}分</text>
+        </view>
+      </view>
+    </view>
+    <view class="cover-mask"></view>
+  </view>
+
+  <!-- 操作栏 -->
+  <view class="action-bar">
+    <view class="action-bar">
+    <view class="author-info" bindtap="goAuthorProfile">
+      <view class="author-avatar">
+        <image 
+          src="{{authorAvatar}}" 
+          mode="aspectFill"
+          lazy-load
+          binderror="onAuthorAvatarError"
+        />
+      </view>
+      <view class="author-text">
+        <text class="author-name">{{recipe.authorNickname}}</text>
+        <text class="author-label">发布者</text>
+      </view>
+    </view>
+    <view class="actions">
+      <button class="btn favorite {{recipe.isFavorited ? 'active' : ''}}" bindtap="toggleFavorite">
+        {{recipe.isFavorited ? '⭐ 已收藏' : '☆ 收藏'}}
+      </button>
+      <button class="btn dislike" bindtap="toggleDislike" wx:if="{{!isAuthor}}">👎</button>
+      <button class="btn edit" bindtap="editRecipe" wx:if="{{isAuthor}}">✏️</button>
+    </view>
+  </view>
+  </view>
+
+  <!-- 标签 -->
+  <view class="tags-section" wx:if="{{recipe.tags && recipe.tags.length > 0}}">
+    <tag-pill 
+      wx:for="{{recipe.tags}}" 
+      wx:key="id"
+      name="{{item.name}}"
+      bind:tap="goTag"
+      data-id="{{item.id}}"
+    />
+  </view>
+
+  <!-- 简介 -->
+  <view class="desc-section" wx:if="{{recipe.description}}">
+    <text class="desc-text">{{recipe.description}}</text>
+  </view>
+
+  <!-- 步骤列表 -->
+  <view class="steps-section">
+    <view class="section-title">
+      <text>烹饪步骤</text>
+      <view class="cook-mode-btn" bindtap="goCookMode">
+        <text>👨‍🍳</text>
+        <text>烹饪模式</text>
+      </view>
+    </view>
+    
+    <step-item 
+      wx:for="{{steps}}" 
+      wx:key="id"
+      step="{{item}}"
+    />
+  </view>
+
+  <!-- 相似推荐 -->
+  <view class="similar-section" wx:if="{{similar && similar.length > 0}}">
+  <view class="section-title-row">
+    <text class="section-title">猜你喜欢</text>
+    <text class="slide-tip">👈 左右滑动 👉</text>
+  </view>
+  
+  <scroll-view 
+    class="similar-scroll" 
+    scroll-x 
+    show-scrollbar="{{false}}"
+  >
+    <view class="similar-list">
+      <view 
+        class="similar-card" 
+        wx:for="{{similar}}" 
+        wx:key="id"
+        bindtap="goSimilar"
+        data-id="{{item.id}}"
+      >
+        <view class="similar-image" style="background: {{item.placeholderColor}}">
+          <text class="similar-initial">{{item.title[0]}}</text>
+          <view class="similar-rating" wx:if="{{item.rating}}">
+            <text>⭐ {{item.rating}}</text>
+          </view>
+        </view>
+        <view class="similar-info">
+          <text class="similar-title">{{item.title}}</text>
+          <text class="similar-meta">{{item.cookTime}}分钟 · {{item.difficultyText}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view wx:elif="{{similar && similar.length === 0}}" style="padding: 40rpx; text-align: center; color: #999;">
+  暂无相似推荐
+</view>
+  
+  <!-- 收藏夹选择弹窗（新增） -->
+  <view class="folder-modal" wx:if="{{showFolderModal}}">
+    <view class="modal-mask" bindtap="closeFolderModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">选择收藏夹</text>
+        <text class="close" bindtap="closeFolderModal">✕</text>
+      </view>
+      
+      <scroll-view class="folder-list" scroll-y>
+        <view 
+          class="folder-item {{selectedFolder === item ? 'active' : ''}}" 
+          wx:for="{{folders}}" 
+          wx:key="*this"
+          bindtap="selectFolder"
+          data-folder="{{item}}"
+        >
+          <text class="folder-icon">📁</text>
+          <text class="folder-name">{{item}}</text>
+          <text class="check" wx:if="{{selectedFolder === item}}">✓</text>
+        </view>
+      </scroll-view>
+      
+      <!-- 新建文件夹 -->
+      <view class="create-section">
+        <text class="section-label">新建收藏夹</text>
+        <view class="create-input">
+          <input 
+            placeholder="输入文件夹名称" 
+            value="{{newFolderName}}" 
+            bindinput="inputNewFolder"
+            maxlength="20"
+          />
+          <text class="clear" wx:if="{{newFolderName}}" bindtap="clearNewFolder">✕</text>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeFolderModal">取消</button>
+        <button class="btn-confirm" bindtap="confirmFavorite">确定收藏</button>
+      </view>
+    </view>
+  </view>
+</view>

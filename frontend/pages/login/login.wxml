@@ -1,0 +1,89 @@
+<view class="container">
+  <!-- Logo区域 -->
+  <view class="logo-section">
+    <view class="logo">🍳</view>
+    <text class="app-name">{{isRegisterMode ? '注册账号' : 'DishMind'}}</text>
+    <text class="slogan">{{isRegisterMode ? '加入美食社区' : '发现美食，记录味道'}}</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <!-- 用户名（登录/注册共用） -->
+    <view class="input-group">
+      <text class="icon">👤</text>
+      <input 
+        type="text" 
+        placeholder="请输入用户名" 
+        value="{{username}}" 
+        bindinput="inputUsername"
+        maxlength="20"
+      />
+    </view>
+
+    <!-- 密码（登录/注册共用） -->
+    <view class="input-group">
+      <text class="icon">🔒</text>
+      <input 
+        type="password" 
+        placeholder="{{isRegisterMode ? '请设置密码（至少6位）' : '请输入密码'}}" 
+        value="{{password}}" 
+        bindinput="inputPassword"
+        maxlength="20"
+      />
+    </view>
+
+    <!-- 注册额外字段（仅注册模式显示） -->
+    <block wx:if="{{isRegisterMode}}">
+      <view class="input-group">
+        <text class="icon">🏷️</text>
+        <input 
+          type="text" 
+          placeholder="请输入昵称" 
+          value="{{nickname}}" 
+          bindinput="inputNickname"
+          maxlength="20"
+        />
+      </view>
+
+      <view class="input-group">
+        <text class="icon">📱</text>
+        <input 
+          type="number" 
+          placeholder="请输入手机号（选填）" 
+          value="{{phone}}" 
+          bindinput="inputPhone"
+          maxlength="11"
+        />
+      </view>
+    </block>
+
+    <!-- 提交按钮 -->
+    <button 
+      class="login-btn {{username && password ? 'active' : ''}}" 
+      bindtap="submitForm"
+      loading="{{loading}}"
+      disabled="{{!username || !password || (isRegisterMode && !nickname)}}"
+    >
+      {{isRegisterMode ? '立即注册' : '登录'}}
+    </button>
+
+    <!-- 切换登录/注册 -->
+    <view class="switch-tip">
+      <text>{{isRegisterMode ? '已有账号？' : '还没有账号？'}}</text>
+      <text class="switch-btn" bindtap="switchMode">
+        {{isRegisterMode ? '去登录' : '去注册'}}
+      </text>
+    </view>
+  </view>
+
+  <!-- 其他选项（仅登录模式显示） -->
+  <block wx:if="{{!isRegisterMode}}">
+    <view class="divider">
+      <text>或</text>
+    </view>
+
+    <view class="guest-entry">
+      <text bindtap="goGuest">暂不登录，浏览看看</text>
+    </view>
+  </block>
+</view>
